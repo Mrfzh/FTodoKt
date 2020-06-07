@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">FTodo</string>
+    <string name="login_title">登录</string>
+    <string name="hint_input_username">用户名</string>
+    <string name="hint_input_password">密码</string>
+    <string name="input_bar_button_login">登录</string>
+    <string name="input_bar_register_tip">还没有账号？点击注册</string>
+</resources>

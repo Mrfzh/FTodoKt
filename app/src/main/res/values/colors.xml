@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimaryDark">#3700B3</color>
+    <color name="colorAccent">#03DAC5</color>
+
+    <color name="main_color">@android:color/holo_blue_light</color>
+    <color name="main_bg">#fafafa</color>
+    <color name="title_bar_light_color">#fafafa</color>
+
+    <color name="input_bar_bottom">#e1e1e1</color>
+    <color name="input_bar_hint">#c1c1c1</color>
+    <color name="input_bar_button_bg">#f1f1f1</color>
+    <color name="input_bar_button_selected_bg">@color/main_color</color>
+    <color name="input_bar_button_text">#b1b1b1</color>
+    <color name="input_bar_button_selected_text">@color/title_bar_light_color</color>
+    <color name="input_bar_register_tip_text">@color/main_color</color>
+
+</resources>
