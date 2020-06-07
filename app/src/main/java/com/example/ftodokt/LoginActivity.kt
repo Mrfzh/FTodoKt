@@ -84,12 +84,15 @@ class LoginActivity : BaseActivity() , View.OnClickListener{
     override fun onClick(v: View?) {
         when (v?.id) {
             R.id.iv_login_back -> {
-                showShortToast("back")
+                finish()
             }
             R.id.tv_login_register_tip -> {
                 showShortToast("register")
             }
             R.id.tv_login_login_button -> {
+                if (!mLoginTv.isSelected) {
+                    return
+                }
                 showShortToast("login")
             }
         }
