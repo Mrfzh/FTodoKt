@@ -1,7 +1,8 @@
-package com.example.ftodokt
+package com.example.ftodokt.view
 
 import android.widget.Button
 import android.widget.Toast
+import com.example.ftodokt.R
 import com.example.ftodokt.base.BaseActivity
 
 class MainActivity : BaseActivity() {
