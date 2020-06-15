@@ -2,6 +2,7 @@
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
     <data>
+        <import type="android.view.View"/>
         <variable
             name="loginVM"
             type="com.example.ftodokt.viewmodel.LoginViewModel" />
@@ -129,6 +130,19 @@
             android:textSize="@dimen/input_bar_register_tip_text_size"
             android:textColor="@color/input_bar_register_tip_text"
             android:gravity="center" />
+
+        <!-- progress bar -->
+        <ProgressBar
+            android:id="@+id/pb_login"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:indeterminateTint="@color/main_color"
+            android:visibility="@{loginVM.showProgressBar? View.VISIBLE : View.GONE}"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 </layout>

@@ -1,20 +1,25 @@
 package com.example.ftodokt.view
 
+import android.util.Log
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.ftodokt.R
 import com.example.ftodokt.base.BaseActivity
+import com.example.ftodokt.data.AddTodoData
 import com.example.ftodokt.databinding.ActivityLoginBinding
+import com.example.ftodokt.model.TodoModel
+import com.example.ftodokt.net.RequestListener
 import com.example.ftodokt.utils.CommonUtil
 import com.example.ftodokt.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
+import java.util.*
 
 
 class LoginActivity : BaseActivity() , View.OnClickListener{
 
-    // 创建 ViewModel
+    // 创建ViewModel
     private val loginVM by lazy { ViewModelProviders.of(this).get(LoginViewModel::class.java) }
 
     override fun isHideTitleBar(): Boolean {
@@ -30,15 +35,26 @@ class LoginActivity : BaseActivity() , View.OnClickListener{
         CommonUtil.setDarkColorStatusBar(this)
         window.statusBarColor = resources.getColor(R.color.main_color)
 
-        // 创建 DataBinding
+        // 创建DataBinding
         val binding: ActivityLoginBinding = DataBindingUtil.setContentView(this,
             R.layout.activity_login
         )
         // 绑定数据源
         binding.loginVM = loginVM
 
+        // 监听EditText文字变化
         loginVM.username.observe(this, Observer { checkInputChanged() })
         loginVM.password.observe(this, Observer { checkInputChanged() })
+
+        // toast提示
+        loginVM.toastMsg.observe(this, Observer { showShortToast(loginVM.toastMsg.value) })
+
+        // 登录状态
+        loginVM.loginStatus.observe(this, Observer {
+            if (loginVM.loginStatus.value == 0) {
+//                finish() // 登录成功
+            }
+        })
     }
 
     override fun initView() {
@@ -53,13 +69,26 @@ class LoginActivity : BaseActivity() , View.OnClickListener{
                 finish()
             }
             R.id.tv_login_register -> {
-                showShortToast("register")
+                // 模拟增加一条todo
+                val addTodoData = AddTodoData("title1", "content1", "2020-6-15", 1, 1)
+                TodoModel().addTodo(addTodoData, object : RequestListener {
+                    override fun requestSuccess(json: String) {
+                        Log.d("fzh", "addTodoRes = $json")
+                    }
+
+                    override fun requestError(errorMsg: String) {
+                        Log.d("fzh", "addTodoError = $errorMsg")
+                    }
+
+                })
             }
             R.id.tv_login_login -> {
                 if (!tv_login_login.isSelected) {
                     return
                 }
-                showShortToast("login")
+                // 进行登录
+                loginVM.login()
+                CommonUtil.hideSoftInput(this)
             }
         }
     }
@@ -73,4 +102,5 @@ class LoginActivity : BaseActivity() , View.OnClickListener{
             tv_login_login.setTextColor(resources.getColor(R.color.input_bar_button_selected_text))
         }
     }
+
 }
