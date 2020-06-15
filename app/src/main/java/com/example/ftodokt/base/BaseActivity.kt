@@ -33,7 +33,7 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun initView()
 
-    protected fun showShortToast(content : String) {
+    protected fun showShortToast(content: String?) {
         Toast.makeText(this, content, Toast.LENGTH_SHORT).show()
     }
 }
