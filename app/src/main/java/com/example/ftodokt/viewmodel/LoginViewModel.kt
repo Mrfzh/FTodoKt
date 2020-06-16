@@ -32,7 +32,7 @@ class LoginViewModel : ViewModel(){
 
         Handler().postDelayed({
             doLogin()
-        }, 1000)
+        }, 500)
     }
 
     fun doLogin() {

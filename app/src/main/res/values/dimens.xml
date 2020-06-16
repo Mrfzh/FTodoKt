@@ -13,4 +13,10 @@
     <dimen name="input_bar_register_tip_height">20dp</dimen>
     <dimen name="input_bar_register_tip_text_size">12sp</dimen>
 
+    <dimen name="main_title_bar_username_padding">25dp</dimen>
+    <dimen name="main_title_bar_username_text_size">16sp</dimen>
+    <dimen name="main_title_bar_title_text_size">18sp</dimen>
+    <dimen name="main_add_todo_button_height_and_weight">50dp</dimen>
+    <dimen name="main_add_todo_button_margin">30dp</dimen>
+
 </resources>

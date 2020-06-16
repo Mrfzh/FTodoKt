@@ -1,20 +1,17 @@
 package com.example.ftodokt.view
 
-import android.util.Log
+import android.content.Intent
 import android.view.View
 import androidx.databinding.DataBindingUtil
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProviders
 import com.example.ftodokt.R
 import com.example.ftodokt.base.BaseActivity
-import com.example.ftodokt.data.AddTodoData
 import com.example.ftodokt.databinding.ActivityLoginBinding
-import com.example.ftodokt.model.TodoModel
-import com.example.ftodokt.net.RequestListener
+import com.example.ftodokt.test.TestActivity
 import com.example.ftodokt.utils.CommonUtil
 import com.example.ftodokt.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
-import java.util.*
 
 
 class LoginActivity : BaseActivity() , View.OnClickListener{
@@ -24,10 +21,6 @@ class LoginActivity : BaseActivity() , View.OnClickListener{
 
     override fun isHideTitleBar(): Boolean {
         return true
-    }
-
-    override fun getLayoutResId(): Int {
-        return R.layout.activity_login
     }
 
     override fun initData() {
@@ -52,7 +45,12 @@ class LoginActivity : BaseActivity() , View.OnClickListener{
         // 登录状态
         loginVM.loginStatus.observe(this, Observer {
             if (loginVM.loginStatus.value == 0) {
-//                finish() // 登录成功
+                // 登录成功
+                val intent = Intent(MainActivity.ACTION_LOGIN)
+                intent.putExtra(MainActivity.EXTRA_USERNAME, loginVM.username.value)
+                intent.putExtra(MainActivity.EXTRA_PASSWORD, loginVM.password.value)
+                sendBroadcast(intent)
+                finish()
             }
         })
     }
@@ -69,18 +67,7 @@ class LoginActivity : BaseActivity() , View.OnClickListener{
                 finish()
             }
             R.id.tv_login_register -> {
-                // 模拟增加一条todo
-                val addTodoData = AddTodoData("title1", "content1", "2020-6-15", 1, 1)
-                TodoModel().addTodo(addTodoData, object : RequestListener {
-                    override fun requestSuccess(json: String) {
-                        Log.d("fzh", "addTodoRes = $json")
-                    }
-
-                    override fun requestError(errorMsg: String) {
-                        Log.d("fzh", "addTodoError = $errorMsg")
-                    }
-
-                })
+                showShortToast("register")
             }
             R.id.tv_login_login -> {
                 if (!tv_login_login.isSelected) {

@@ -1,7 +1,10 @@
 package com.example.ftodokt.test;
 
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
+
+import com.example.ftodokt.view.MainActivity;
 
 /**
  * 测试类，编写java代码
@@ -10,6 +13,8 @@ import android.os.Looper;
  * @date 2020/6/12
  */
 public class Test {
+
+    public static final String ACTION_LOGIN = "action_login";
 
     private void m() {
         m1(new Listener() {
@@ -25,6 +30,8 @@ public class Test {
 
             }
         });
+
+        Intent intent = new Intent(TestActivity.TEST_KEY);
     }
 
     interface Listener {

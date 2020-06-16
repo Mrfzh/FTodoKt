@@ -1,5 +1,8 @@
 package com.example.ftodokt.base
 
+import android.content.ComponentName
+import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.view.Window
 import android.widget.Toast
@@ -19,7 +22,6 @@ abstract class BaseActivity : AppCompatActivity() {
             // 隐藏标题栏
             supportRequestWindowFeature(Window.FEATURE_NO_TITLE)
         }
-        setContentView(getLayoutResId())
 
         initData()
         initView()
@@ -27,13 +29,15 @@ abstract class BaseActivity : AppCompatActivity() {
 
     abstract fun isHideTitleBar() : Boolean
 
-    abstract fun getLayoutResId() : Int
-
     abstract fun initData()
 
     abstract fun initView()
 
     protected fun showShortToast(content: String?) {
         Toast.makeText(this, content, Toast.LENGTH_SHORT).show()
+    }
+
+    protected fun startActivity(cls: Class<*>?) {
+        startActivity(Intent(this, cls))
     }
 }

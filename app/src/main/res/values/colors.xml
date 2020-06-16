@@ -16,4 +16,5 @@
     <color name="input_bar_button_selected_text">@color/title_bar_light_color</color>
     <color name="input_bar_register_tip_text">@color/main_color</color>
 
+    <color name="main_title_bar_text">#fafafa</color>
 </resources>
