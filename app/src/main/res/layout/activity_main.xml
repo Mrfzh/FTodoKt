@@ -1,19 +1,76 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".view.MainActivity">
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <Button
-        android:id="@+id/btn_main_test"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="测试"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+    <data>
+        <variable
+            name="mainVM"
+            type="com.example.ftodokt.viewmodel.MainViewModel" />
+    </data>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".view.MainActivity">
+
+        <!-- 标题栏 -->
+        <View
+            android:layout_width="0dp"
+            android:layout_height="@dimen/title_bar_height"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@color/main_color"/>
+
+        <TextView
+            android:id="@+id/tv_main_username"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/title_bar_height"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toStartOf="@id/tv_main_title"
+            android:paddingStart="@dimen/main_title_bar_username_padding"
+            android:gravity="center|start"
+            android:singleLine="true"
+            android:ellipsize="end"
+            app:layout_constraintHorizontal_weight="3"
+            android:text="@={mainVM.username}"
+            android:textColor="@color/main_title_bar_text"
+            android:textSize="@dimen/main_title_bar_username_text_size"/>
+
+        <TextView
+            android:id="@+id/tv_main_title"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/title_bar_height"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_main_username"
+            app:layout_constraintEnd_toStartOf="@id/v_main_title_right"
+            android:gravity="center"
+            app:layout_constraintHorizontal_weight="5"
+            android:text="@={mainVM.title}"
+            android:textColor="@color/main_title_bar_text"
+            android:textSize="@dimen/main_title_bar_title_text_size"/>
+
+        <View
+            android:id="@+id/v_main_title_right"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/title_bar_height"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@id/tv_main_title"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_weight="3"/>
+
+        <!-- 添加按钮 -->
+        <ImageView
+            android:id="@+id/iv_main_add_todo"
+            android:layout_width="@dimen/main_add_todo_button_height_and_weight"
+            android:layout_height="@dimen/main_add_todo_button_height_and_weight"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_margin="@dimen/main_add_todo_button_margin"
+            android:src="@drawable/add_todo"/>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

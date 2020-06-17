@@ -11,6 +11,8 @@ import android.os.Looper;
  */
 public class Test {
 
+    public static final String ACTION_LOGIN = "action_login";
+
     private void m() {
         m1(new Listener() {
             @Override
@@ -25,6 +27,8 @@ public class Test {
 
             }
         });
+
+
     }
 
     interface Listener {
