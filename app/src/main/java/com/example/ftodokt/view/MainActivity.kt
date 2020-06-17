@@ -17,10 +17,10 @@ import kotlinx.android.synthetic.main.activity_main.*
 
 class MainActivity : BaseActivity(), View.OnClickListener{
 
+    // 常量
     companion object {
         const val ACTION_LOGIN = "action_login"
         const val EXTRA_USERNAME = "extra_username"
-        const val EXTRA_PASSWORD = "extra_password"
     }
 
     private val mainVM by lazy { ViewModelProviders.of(this).get(MainViewModel::class.java) }
@@ -29,9 +29,7 @@ class MainActivity : BaseActivity(), View.OnClickListener{
         override fun onReceive(context: Context?, intent: Intent?) {
             // 登录成功
             val username = intent?.getStringExtra(EXTRA_USERNAME)
-            val password = intent?.getStringExtra(EXTRA_PASSWORD)
             mainVM.username.set(username?:"")
-            // TODO 保持用户信息到本地
         }
     }
 

@@ -1,10 +1,7 @@
 package com.example.ftodokt.test;
 
-import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
-
-import com.example.ftodokt.view.MainActivity;
 
 /**
  * 测试类，编写java代码
@@ -31,7 +28,7 @@ public class Test {
             }
         });
 
-        Intent intent = new Intent(TestActivity.TEST_KEY);
+
     }
 
     interface Listener {

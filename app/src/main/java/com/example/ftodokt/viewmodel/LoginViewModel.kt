@@ -5,8 +5,10 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.ftodokt.data.LoginBean
+import com.example.ftodokt.data.UserInfo
 import com.example.ftodokt.model.LoginModel
 import com.example.ftodokt.net.RequestListener
+import com.example.ftodokt.utils.SpUtils
 import com.google.gson.Gson
 
 /**
@@ -52,6 +54,8 @@ class LoginViewModel : ViewModel(){
                     // 下载成功
                     loginStatus.value = 0
                     toastMsg.value = "登录成功"
+                    // 保存用户信息到sp
+                    SpUtils.saveUserInfo(UserInfo(usernameStr?:"", passwordStr?:""))
                 }
                 showProgressBar.set(false)
             }

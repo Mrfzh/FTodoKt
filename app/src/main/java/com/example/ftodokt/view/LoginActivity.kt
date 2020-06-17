@@ -8,7 +8,6 @@ import androidx.lifecycle.ViewModelProviders
 import com.example.ftodokt.R
 import com.example.ftodokt.base.BaseActivity
 import com.example.ftodokt.databinding.ActivityLoginBinding
-import com.example.ftodokt.test.TestActivity
 import com.example.ftodokt.utils.CommonUtil
 import com.example.ftodokt.viewmodel.LoginViewModel
 import kotlinx.android.synthetic.main.activity_login.*
@@ -48,7 +47,6 @@ class LoginActivity : BaseActivity() , View.OnClickListener{
                 // 登录成功
                 val intent = Intent(MainActivity.ACTION_LOGIN)
                 intent.putExtra(MainActivity.EXTRA_USERNAME, loginVM.username.value)
-                intent.putExtra(MainActivity.EXTRA_PASSWORD, loginVM.password.value)
                 sendBroadcast(intent)
                 finish()
             }
@@ -81,12 +79,14 @@ class LoginActivity : BaseActivity() , View.OnClickListener{
     }
 
     private fun checkInputChanged() {
-        if (loginVM.username.value == "" || loginVM.password.value == "") {
-            tv_login_login.isSelected = false
-            tv_login_login.setTextColor(resources.getColor(R.color.input_bar_button_text))
-        } else {
-            tv_login_login.isSelected = true
-            tv_login_login.setTextColor(resources.getColor(R.color.input_bar_button_selected_text))
+        tv_login_login.apply {
+            if (loginVM.username.value == "" || loginVM.password.value == "") {
+                isSelected = false
+                setTextColor(resources.getColor(R.color.input_bar_button_text))
+            } else {
+                isSelected = true
+                setTextColor(resources.getColor(R.color.input_bar_button_selected_text))
+            }
         }
     }
 
